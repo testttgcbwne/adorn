@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ADORN COLLAGEN</title>
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  background: #fff;
+  color: #111;
+}
+
+/* HEADER */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 64px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  z-index: 100;
+}
+
+header .brand {
+  font-weight: 700;
+  letter-spacing: 4px;
+}
+
+header .icons span {
+  margin-left: 14px;
+  font-size: 18px;
+  cursor: default;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  background: url("https://images.unsplash.com/photo-1515378791036-0648a3ef77b2") center/cover no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+}
+
+.hero-content {
+  position: relative;
+  color: #fff;
+  max-width: 90%;
+}
+
+.hero small {
+  letter-spacing: 2px;
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.hero h1 {
+  margin: 16px 0 20px;
+  font-size: 44px;
+  letter-spacing: 3px;
+}
+
+.hero p {
+  font-size: 14px;
+  opacity: 0.9;
+  max-width: 520px;
+  margin: auto;
+}
+
+.hero a {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 14px 30px;
+  background: #fff;
+  color: #000;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+/* PRODUCTS */
+.products {
+  padding: 80px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+}
+
+.product img {
+  width: 100%;
+  display: block;
+}
+
+.product h3 {
+  margin: 14px 0 8px;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.product p {
+  font-size: 13px;
+  color: #666;
+}
+
+.product a {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 10px 22px;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+/* INFO */
+.info {
+  padding: 80px 20px;
+  background: #fafafa;
+  text-align: center;
+}
+
+.info-block {
+  margin-bottom: 50px;
+}
+
+.info-block h4 {
+  margin: 12px 0;
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+
+.info-block p {
+  font-size: 14px;
+  color: #666;
+  max-width: 520px;
+  margin: auto;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div>☰</div>
+  <div class="brand">ADORN</div>
+  <div class="icons">
+    <span>👤</span>
+    <span>🛒</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <small>PROFESSIONAL HAIR TREATMENT</small>
+    <h1>ADORN COLLAGEN</h1>
+    <p>
+      Professional collagen-based smoothing treatment.  
+      Shine, strength and anti-frizz care for healthy hair.
+    </p>
+    <a href="#">DISCOVER</a>
+  </div>
+</section>
+
+<section class="products">
+  <div class="product">
+    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9">
+    <h3>Adorn Collagen Treatment</h3>
+    <p>Professional smoothing & strengthening formula.</p>
+    <a href="#">VIEW</a>
+  </div>
+
+  <div class="product">
+    <img src="https://images.unsplash.com/photo-1519744792095-2f2205e87b6f">
+    <h3>Salon Size • 32 oz</h3>
+    <p>Designed for professional use.</p>
+    <a href="#">VIEW</a>
+  </div>
+</section>
+
+<section class="info">
+  <div class="info-block">
+    <h4>COLLAGEN BASED CARE</h4>
+    <p>
+      Advanced collagen formula designed to restore strength,
+      smoothness and natural shine of the hair.
+    </p>
+  </div>
+
+  <div class="info-block">
+    <h4>PROFESSIONAL QUALITY</h4>
+    <p>
+      Used by hair professionals and salons for long-lasting results.
+    </p>
+  </div>
+
+  <div class="info-block">
+    <h4>INDIVIDUAL APPROACH</h4>
+    <p>
+      Suitable for different hair types with customized application.
+    </p>
+  </div>
+</section>
+
+</body>
+</html>
