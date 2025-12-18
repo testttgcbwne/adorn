@@ -6,216 +6,245 @@
 <title>ADORN COLLAGEN</title>
 
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
-  background: #fff;
-  color: #111;
-}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;background:#fff;color:#111}
 
 /* HEADER */
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 64px;
-  background: #fff;
-  border-bottom: 1px solid #eee;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 18px;
-  z-index: 100;
+header{
+  position:fixed;top:0;left:0;right:0;
+  height:64px;background:#fff;border-bottom:1px solid #eee;
+  z-index:100;
 }
+.hdr{
+  height:100%;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 14px;
+  position:relative;
+}
+.brand{
+  position:absolute;left:50%;transform:translateX(-50%);
+  font-weight:700;letter-spacing:6px;
+}
+.hdr-left,.hdr-right{display:flex;align-items:center;gap:12px}
 
-header .brand {
-  font-weight: 700;
-  letter-spacing: 4px;
+.iconBtn{
+  width:40px;height:40px;border:0;background:transparent;
+  display:grid;place-items:center;border-radius:10px;
 }
+.iconBtn:active{background:#f2f2f2}
 
-header .icons span {
-  margin-left: 14px;
-  font-size: 18px;
-  cursor: default;
-}
+.iconSvg{width:22px;height:22px;stroke:#111;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
 
 /* HERO */
-.hero {
-  height: 100vh;
-  background: url("https://images.unsplash.com/photo-1515378791036-0648a3ef77b2") center/cover no-repeat;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+.hero{
+  height:100vh;
+  background:url("https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1600&q=60") center/cover no-repeat;
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;
+  padding:0 16px;
 }
-
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-}
-
-.hero-content {
-  position: relative;
-  color: #fff;
-  max-width: 90%;
-}
-
-.hero small {
-  letter-spacing: 2px;
-  font-size: 12px;
-  opacity: 0.85;
-}
-
-.hero h1 {
-  margin: 16px 0 20px;
-  font-size: 44px;
-  letter-spacing: 3px;
-}
-
-.hero p {
-  font-size: 14px;
-  opacity: 0.9;
-  max-width: 520px;
-  margin: auto;
-}
-
-.hero a {
-  display: inline-block;
-  margin-top: 28px;
-  padding: 14px 30px;
-  background: #fff;
-  color: #000;
-  text-decoration: none;
-  font-size: 13px;
-  letter-spacing: 1px;
+.hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.42)}
+.hero-content{position:relative;color:#fff;max-width:680px}
+.hero small{letter-spacing:2px;font-size:12px;opacity:.9}
+.hero h1{margin:16px 0 16px;font-size:44px;letter-spacing:3px;line-height:1.05}
+.hero p{font-size:14px;opacity:.92;line-height:1.5}
+.hero a{
+  display:inline-block;margin-top:22px;padding:14px 30px;
+  background:#fff;color:#000;text-decoration:none;font-size:13px;letter-spacing:1px
 }
 
 /* PRODUCTS */
-.products {
-  padding: 80px 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 28px;
+.products{
+  padding:70px 16px 40px;
+  display:grid;
+  grid-template-columns: 1fr 1fr;   /* ← 2 в ряд на мобиле */
+  gap:16px;
 }
-
-.product img {
-  width: 100%;
-  display: block;
+.product{border:1px solid #eee;background:#fff}
+.product img{
+  width:100%;
+  display:block;
+  aspect-ratio: 1 / 1;
+  object-fit:cover;
 }
-
-.product h3 {
-  margin: 14px 0 8px;
-  font-size: 14px;
-  letter-spacing: 1px;
-}
-
-.product p {
-  font-size: 13px;
-  color: #666;
-}
-
-.product a {
-  display: inline-block;
-  margin-top: 14px;
-  padding: 10px 22px;
-  background: #000;
-  color: #fff;
-  text-decoration: none;
-  font-size: 12px;
+.product .pad{padding:12px}
+.product h3{font-size:13px;letter-spacing:.6px;margin-bottom:6px}
+.product p{font-size:12px;color:#666;line-height:1.4}
+.product a{
+  display:inline-block;margin-top:12px;padding:10px 18px;
+  background:#000;color:#fff;text-decoration:none;font-size:12px
 }
 
 /* INFO */
-.info {
-  padding: 80px 20px;
-  background: #fafafa;
-  text-align: center;
+.info{padding:60px 18px;background:#fafafa;text-align:center}
+.info-block{margin-bottom:44px}
+.info-ico{
+  width:34px;height:34px;margin:0 auto 8px;
+  display:grid;place-items:center;
 }
+.info-ico svg{width:28px;height:28px;stroke:#111;stroke-width:1.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.info-block h4{margin:10px 0 10px;letter-spacing:1px;font-size:14px}
+.info-block p{font-size:14px;color:#666;max-width:560px;margin:0 auto;line-height:1.55}
 
-.info-block {
-  margin-bottom: 50px;
-}
-
-.info-block h4 {
-  margin: 12px 0;
-  letter-spacing: 1px;
-  font-size: 14px;
-}
-
-.info-block p {
-  font-size: 14px;
-  color: #666;
-  max-width: 520px;
-  margin: auto;
-}
+/* spacing because header fixed */
+.spacer{height:64px}
 </style>
 </head>
 
 <body>
 
 <header>
-  <div>☰</div>
-  <div class="brand">ADORN</div>
-  <div class="icons">
-    <span>👤</span>
-    <span>🛒</span>
+  <div class="hdr">
+    <div class="hdr-left">
+      <button class="iconBtn" aria-label="Menu">
+        <svg class="iconSvg" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+
+      <button class="iconBtn" id="langBtn" aria-label="Language">
+        <svg class="iconSvg" viewBox="0 0 24 24">
+          <path d="M4 5h8M8 5v2c0 4-3 7-7 7"/>
+          <path d="M6 10c1.2 1.8 3.1 3.6 6 5"/>
+          <path d="M13 19l4-14 4 14"/>
+          <path d="M14.4 15h5.2"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="brand">ADORN</div>
+
+    <div class="hdr-right">
+      <button class="iconBtn" aria-label="Account">
+        <svg class="iconSvg" viewBox="0 0 24 24">
+          <path d="M20 21a8 8 0 0 0-16 0"/>
+          <path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4z"/>
+        </svg>
+      </button>
+
+      <button class="iconBtn" aria-label="Cart">
+        <svg class="iconSvg" viewBox="0 0 24 24">
+          <path d="M6 6h15l-2 9H7L6 6z"/>
+          <path d="M6 6 5 3H2"/>
+          <path d="M9 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM17 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+        </svg>
+      </button>
+    </div>
   </div>
 </header>
 
+<div class="spacer"></div>
+
 <section class="hero">
   <div class="hero-content">
-    <small>PROFESSIONAL HAIR TREATMENT</small>
-    <h1>ADORN COLLAGEN</h1>
-    <p>
-      Professional collagen-based smoothing treatment.  
-      Shine, strength and anti-frizz care for healthy hair.
+    <small data-i18n="hero_kicker">PROFESSIONAL HAIR TREATMENT</small>
+    <h1 data-i18n="hero_title">ADORN COLLAGEN</h1>
+    <p data-i18n="hero_desc">
+      Professional collagen-based smoothing treatment. Shine, strength and anti-frizz care for healthy hair.
     </p>
-    <a href="#">DISCOVER</a>
+    <a href="#" data-i18n="hero_btn">DISCOVER</a>
   </div>
 </section>
 
 <section class="products">
   <div class="product">
-    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9">
-    <h3>Adorn Collagen Treatment</h3>
-    <p>Professional smoothing & strengthening formula.</p>
-    <a href="#">VIEW</a>
+    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=60" alt="">
+    <div class="pad">
+      <h3 data-i18n="p1_title">Adorn Collagen Treatment</h3>
+      <p data-i18n="p1_desc">Professional smoothing & strengthening formula.</p>
+      <a href="#" data-i18n="p_btn">VIEW</a>
+    </div>
   </div>
 
   <div class="product">
-    <img src="https://images.unsplash.com/photo-1519744792095-2f2205e87b6f">
-    <h3>Salon Size • 32 oz</h3>
-    <p>Designed for professional use.</p>
-    <a href="#">VIEW</a>
+    <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1200&q=60" alt="">
+    <div class="pad">
+      <h3 data-i18n="p2_title">Salon Size</h3>
+      <p data-i18n="p2_desc">Designed for professional use.</p>
+      <a href="#" data-i18n="p_btn">VIEW</a>
+    </div>
   </div>
 </section>
 
 <section class="info">
   <div class="info-block">
-    <h4>COLLAGEN BASED CARE</h4>
-    <p>
-      Advanced collagen formula designed to restore strength,
-      smoothness and natural shine of the hair.
-    </p>
+    <div class="info-ico">
+      <svg viewBox="0 0 24 24"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8L12 3z"/></svg>
+    </div>
+    <h4 data-i18n="i1_title">COLLAGEN BASED CARE</h4>
+    <p data-i18n="i1_desc">Advanced collagen formula designed to restore strength, smoothness and natural shine of the hair.</p>
   </div>
 
   <div class="info-block">
-    <h4>PROFESSIONAL QUALITY</h4>
-    <p>
-      Used by hair professionals and salons for long-lasting results.
-    </p>
+    <div class="info-ico">
+      <svg viewBox="0 0 24 24"><path d="M12 2l7 4v7c0 5-3 9-7 9s-7-4-7-9V6l7-4z"/><path d="M9 12l2 2 4-4"/></svg>
+    </div>
+    <h4 data-i18n="i2_title">PROFESSIONAL QUALITY</h4>
+    <p data-i18n="i2_desc">Used by hair professionals and salons for long-lasting results.</p>
   </div>
 
   <div class="info-block">
-    <h4>INDIVIDUAL APPROACH</h4>
-    <p>
-      Suitable for different hair types with customized application.
-    </p>
+    <div class="info-ico">
+      <svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4z"/><path d="M4 22a8 8 0 0 1 16 0"/></svg>
+    </div>
+    <h4 data-i18n="i3_title">INDIVIDUAL APPROACH</h4>
+    <p data-i18n="i3_desc">Suitable for different hair types with customized application.</p>
   </div>
 </section>
+
+<script>
+const dict = {
+  en: {
+    hero_kicker: "PROFESSIONAL HAIR TREATMENT",
+    hero_title: "ADORN COLLAGEN",
+    hero_desc: "Professional collagen-based smoothing treatment. Shine, strength and anti-frizz care for healthy hair.",
+    hero_btn: "DISCOVER",
+    p1_title: "Adorn Collagen Treatment",
+    p1_desc: "Professional smoothing & strengthening formula.",
+    p2_title: "Salon Size",
+    p2_desc: "Designed for professional use.",
+    p_btn: "VIEW",
+    i1_title: "COLLAGEN BASED CARE",
+    i1_desc: "Advanced collagen formula designed to restore strength, smoothness and natural shine of the hair.",
+    i2_title: "PROFESSIONAL QUALITY",
+    i2_desc: "Used by hair professionals and salons for long-lasting results.",
+    i3_title: "INDIVIDUAL APPROACH",
+    i3_desc: "Suitable for different hair types with customized application."
+  },
+  ru: {
+    hero_kicker: "ПРОФЕССИОНАЛЬНЫЙ УХОД ДЛЯ ВОЛОС",
+    hero_title: "ADORN COLLAGEN",
+    hero_desc: "Профессиональная коллагеновая процедура для сглаживания. Блеск, сила и анти-пушение для здоровых волос.",
+    hero_btn: "СМОТРЕТЬ",
+    p1_title: "Adorn Collagen Treatment",
+    p1_desc: "Профессиональная формула для сглаживания и укрепления.",
+    p2_title: "Объём для салона",
+    p2_desc: "Разработано для профессионального использования.",
+    p_btn: "ОТКРЫТЬ",
+    i1_title: "КОЛЛАГЕНОВЫЙ УХОД",
+    i1_desc: "Формула с коллагеном помогает восстановить силу, гладкость и естественный блеск волос.",
+    i2_title: "ПРОФЕССИОНАЛЬНОЕ КАЧЕСТВО",
+    i2_desc: "Используется мастерами и салонами для стойкого результата.",
+    i3_title: "ИНДИВИДУАЛЬНЫЙ ПОДХОД",
+    i3_desc: "Подходит разным типам волос, с настройкой под клиента."
+  }
+};
+
+let lang = "en";
+function applyLang(l){
+  lang = l;
+  document.documentElement.lang = l;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key = el.getAttribute("data-i18n");
+    if(dict[l][key]) el.textContent = dict[l][key];
+  });
+}
+document.getElementById("langBtn").addEventListener("click", () => {
+  applyLang(lang === "en" ? "ru" : "en");
+});
+
+// default
+applyLang("en");
+</script>
 
 </body>
 </html>
