@@ -55,25 +55,25 @@ header{
   background:rgba(0,0,0,.42);
 }
 
-/* контейнер кнопки — прям внизу */
+/* кнопка как переход между hero и контентом */
 .hero-content{
   position:absolute;
-  bottom:12px;           /* ещё ниже, почти край */
+  bottom:-28px;          /* ← ВАЖНО: отрицательное значение */
   left:50%;
   transform:translateX(-50%);
-  z-index:2;
+  z-index:3;
 }
 
-/* сама кнопка — менее заметная */
+/* сама кнопка — спокойная */
 .hero-content a{
   display:inline-block;
-  background:rgba(255,255,255,.65);   /* было 0.95 → стало мягче */
+  background:#fff;
   color:#000;
-  padding:12px 34px;
+  padding:14px 40px;
   font-size:12px;
   letter-spacing:2px;
   text-decoration:none;
-  backdrop-filter: blur(2px);
+  box-shadow:0 6px 20px rgba(0,0,0,.12);
 }
 
 /* === МОБИЛА: поднимаем банки, режем СВЕРХУ === */
