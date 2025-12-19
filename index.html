@@ -88,6 +88,87 @@ header{
 
 /* spacing because header fixed */
 .spacer{height:64px}
+
+/* ===== DRAWER (SIDE MENU) ===== */
+.drawerOverlay{
+  position:fixed; inset:0;
+  background:rgba(0,0,0,.32);
+  opacity:0; pointer-events:none;
+  transition:opacity .18s ease;
+  z-index:150;
+}
+.drawer{
+  position:fixed; top:0; left:0;
+  height:100vh; width:min(86vw, 340px);
+  background:#fff;
+  transform:translateX(-105%);
+  transition:transform .22s ease;
+  z-index:160;
+  border-right:1px solid #eee;
+  display:flex; flex-direction:column;
+}
+.drawer.open{ transform:translateX(0); }
+.drawerOverlay.open{ opacity:1; pointer-events:auto; }
+
+.drawerHead{
+  height:64px;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 14px;
+  border-bottom:1px solid #eee;
+}
+.drawerTitle{ font-weight:700; letter-spacing:5px; }
+.drawerClose{
+  width:40px;height:40px;border:0;background:transparent;
+  display:grid;place-items:center;border-radius:10px;
+}
+.drawerClose:active{ background:#f2f2f2; }
+
+.drawerBody{ padding:14px; display:flex; flex-direction:column; }
+.drawerGroup{ display:flex; flex-direction:column; }
+
+/* тоненькая линия, не контрастная */
+.drawerDivider{
+  height:1px;
+  background:rgba(17,17,17,.08);
+  margin:12px 0;
+}
+
+.drawerLink{
+  display:flex; align-items:center; gap:12px;
+  padding:12px 4px;
+  text-decoration:none;
+  color:#111;
+}
+.drawerLink span{ font-size:14px; letter-spacing:.2px; }
+.drawerLink svg{ width:20px;height:20px; stroke:#111; stroke-width:1.6; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+
+/* footer controls */
+.drawerFooter{
+  margin-top:auto;
+  padding:14px;
+  border-top:1px solid rgba(17,17,17,.08);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.ctrlRow{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:12px;
+}
+.ctrlLabel{ font-size:12px; color:#666; letter-spacing:.3px; }
+.pills{ display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+.pill{
+  border:1px solid rgba(17,17,17,.12);
+  background:transparent;
+  padding:8px 10px;
+  border-radius:999px;
+  font-size:12px;
+}
+.pill:active{ background:#f4f4f4; }
+.pill.active{
+  border-color:rgba(17,17,17,.25);
+  background:rgba(17,17,17,.04);
+}
 </style>
 </head>
 
@@ -96,7 +177,8 @@ header{
 <header>
   <div class="hdr">
     <div class="hdr-left">
-      <button class="iconBtn" aria-label="Menu">
+      <!-- добавил id="menuBtn" -->
+      <button class="iconBtn" id="menuBtn" aria-label="Menu">
         <svg class="iconSvg" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
 
@@ -131,20 +213,86 @@ header{
   </div>
 </header>
 
+<!-- Drawer -->
+<div class="drawerOverlay" id="drawerOverlay"></div>
+
+<aside class="drawer" id="drawer">
+  <div class="drawerHead">
+    <div class="drawerTitle">ADORN</div>
+    <button class="drawerClose" id="drawerClose" aria-label="Close menu">
+      <svg class="iconSvg" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+
+  <div class="drawerBody">
+    <!-- Group 1 -->
+    <div class="drawerGroup">
+      <a class="drawerLink" href="#products">
+        <svg viewBox="0 0 24 24"><path d="M7 7h10v10H7z"/><path d="M4 4h16v16H4z"/></svg>
+        <span data-i18n="m_catalog">Catalog / Products</span>
+      </a>
+
+      <a class="drawerLink" href="#treatment">
+        <svg viewBox="0 0 24 24"><path d="M12 2l7 4v7c0 5-3 9-7 9s-7-4-7-9V6l7-4z"/><path d="M9 12l2 2 4-4"/></svg>
+        <span data-i18n="m_treatment">Treatment</span>
+      </a>
+
+      <a class="drawerLink" href="#howto">
+        <svg viewBox="0 0 24 24"><path d="M6 4h12v16H6z"/><path d="M9 8h6M9 12h6M9 16h6"/></svg>
+        <span data-i18n="m_howto">How to use</span>
+      </a>
+
+      <a class="drawerLink" href="#where">
+        <svg viewBox="0 0 24 24"><path d="M12 21s7-4.4 7-10a7 7 0 1 0-14 0c0 5.6 7 10 7 10z"/><path d="M12 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+        <span data-i18n="m_where">Where to buy</span>
+      </a>
+    </div>
+
+    <div class="drawerDivider"></div>
+
+    <!-- Group 2 -->
+    <div class="drawerGroup">
+      <a class="drawerLink" href="#shipping">
+        <svg viewBox="0 0 24 24"><path d="M3 7h12v10H3z"/><path d="M15 10h4l2 3v4h-6z"/><path d="M7 19a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM17 19a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>
+        <span data-i18n="m_ship">Delivery & payment</span>
+      </a>
+
+      <a class="drawerLink" href="#contact">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16v12H4z"/><path d="M22 20H2"/><path d="M4 6l8 6 8-6"/></svg>
+        <span data-i18n="m_contact">Contact</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="drawerFooter">
+    <div class="ctrlRow">
+      <div class="ctrlLabel" data-i18n="cur_label">Currency</div>
+      <div class="pills" id="currencyPills">
+        <button class="pill active" data-cur="UAH">UAH</button>
+        <button class="pill" data-cur="EUR">EUR</button>
+        <button class="pill" data-cur="USD">USD</button>
+        <button class="pill" data-cur="USDT">USDT</button>
+      </div>
+    </div>
+  </div>
+</aside>
+
 <div class="spacer"></div>
 
-<section class="hero">
+<!-- добавил id="home" чтобы было куда якорями попадать при желании -->
+<section class="hero" id="home">
   <div class="hero-content">
     <small data-i18n="hero_kicker">PROFESSIONAL HAIR TREATMENT</small>
     <h1 data-i18n="hero_title">ADORN COLLAGEN</h1>
     <p data-i18n="hero_desc">
       Professional collagen-based smoothing treatment. Shine, strength and anti-frizz care for healthy hair.
     </p>
-    <a href="#" data-i18n="hero_btn">DISCOVER</a>
+    <a href="#products" data-i18n="hero_btn">DISCOVER</a>
   </div>
 </section>
 
-<section class="products">
+<!-- добавил id="products" (он был в меню нужен). сам блок не менял -->
+<section class="products" id="products">
   <div class="product">
     <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=60" alt="">
     <div class="pad">
@@ -163,6 +311,11 @@ header{
     </div>
   </div>
 </section>
+
+<!-- делаем якоря без “выдумывания контента”: просто метки -->
+<div id="treatment"></div>
+<div id="howto"></div>
+<div id="where"></div>
 
 <section class="info">
   <div class="info-block">
@@ -190,6 +343,10 @@ header{
   </div>
 </section>
 
+<!-- якоря для “доставка и оплата” и “контакты” (без добавления новых блоков) -->
+<div id="shipping"></div>
+<div id="contact"></div>
+
 <script>
 const dict = {
   en: {
@@ -197,52 +354,114 @@ const dict = {
     hero_title: "ADORN COLLAGEN",
     hero_desc: "Professional collagen-based smoothing treatment. Shine, strength and anti-frizz care for healthy hair.",
     hero_btn: "DISCOVER",
+
     p1_title: "Adorn Collagen Treatment",
     p1_desc: "Professional smoothing & strengthening formula.",
     p2_title: "Salon Size",
     p2_desc: "Designed for professional use.",
     p_btn: "VIEW",
+
     i1_title: "COLLAGEN BASED CARE",
     i1_desc: "Advanced collagen formula designed to restore strength, smoothness and natural shine of the hair.",
     i2_title: "PROFESSIONAL QUALITY",
     i2_desc: "Used by hair professionals and salons for long-lasting results.",
     i3_title: "INDIVIDUAL APPROACH",
-    i3_desc: "Suitable for different hair types with customized application."
+    i3_desc: "Suitable for different hair types with customized application.",
+
+    m_catalog: "Catalog / Products",
+    m_treatment: "Treatment (what & for whom)",
+    m_howto: "How to use (steps, time, aftercare)",
+    m_where: "Where to buy (countries / partners / contacts)",
+    m_ship: "Delivery & payment",
+    m_contact: "Contact",
+
+    cur_label: "Currency"
   },
-  ru: {
-    hero_kicker: "ПРОФЕССИОНАЛЬНЫЙ УХОД ДЛЯ ВОЛОС",
+
+  ua: {
+    hero_kicker: "ПРОФЕСІЙНИЙ ДОГЛЯД ДЛЯ ВОЛОССЯ",
     hero_title: "ADORN COLLAGEN",
-    hero_desc: "Профессиональная коллагеновая процедура для сглаживания. Блеск, сила и анти-пушение для здоровых волос.",
-    hero_btn: "СМОТРЕТЬ",
+    hero_desc: "Професійна колагенова процедура для згладжування. Блиск, сила та anti-frizz догляд для здорового волосся.",
+    hero_btn: "ПЕРЕГЛЯНУТИ",
+
     p1_title: "Adorn Collagen Treatment",
-    p1_desc: "Профессиональная формула для сглаживания и укрепления.",
-    p2_title: "Объём для салона",
-    p2_desc: "Разработано для профессионального использования.",
-    p_btn: "ОТКРЫТЬ",
-    i1_title: "КОЛЛАГЕНОВЫЙ УХОД",
-    i1_desc: "Формула с коллагеном помогает восстановить силу, гладкость и естественный блеск волос.",
-    i2_title: "ПРОФЕССИОНАЛЬНОЕ КАЧЕСТВО",
-    i2_desc: "Используется мастерами и салонами для стойкого результата.",
-    i3_title: "ИНДИВИДУАЛЬНЫЙ ПОДХОД",
-    i3_desc: "Подходит разным типам волос, с настройкой под клиента."
+    p1_desc: "Професійна формула для згладжування та зміцнення.",
+    p2_title: "Салонний об’єм",
+    p2_desc: "Розроблено для професійного використання.",
+    p_btn: "ВІДКРИТИ",
+
+    i1_title: "КОЛАГЕНОВИЙ ДОГЛЯД",
+    i1_desc: "Колагенова формула допомагає відновити силу, гладкість і природний блиск волосся.",
+    i2_title: "ПРОФЕСІЙНА ЯКІСТЬ",
+    i2_desc: "Використовується майстрами та салонами для довготривалого результату.",
+    i3_title: "ІНДИВІДУАЛЬНИЙ ПІДХІД",
+    i3_desc: "Підходить для різних типів волосся з налаштуванням під клієнта.",
+
+    m_catalog: "Каталог / Products",
+    m_treatment: "Процедура (що це і для кого)",
+    m_howto: "Як використовувати (кроки, час, догляд)",
+    m_where: "Де купити (країни / партнери / контакти)",
+    m_ship: "Доставка і оплата",
+    m_contact: "Контакти / Contact",
+
+    cur_label: "Валюта"
   }
 };
 
 let lang = "en";
+
 function applyLang(l){
   lang = l;
-  document.documentElement.lang = l;
+  document.documentElement.lang = (l === "ua" ? "uk" : "en");
   document.querySelectorAll("[data-i18n]").forEach(el=>{
     const key = el.getAttribute("data-i18n");
-    if(dict[l][key]) el.textContent = dict[l][key];
+    if(dict[l] && dict[l][key]) el.textContent = dict[l][key];
   });
 }
+
+// Language toggle EN <-> UA
 document.getElementById("langBtn").addEventListener("click", () => {
-  applyLang(lang === "en" ? "ru" : "en");
+  applyLang(lang === "en" ? "ua" : "en");
+});
+applyLang("en");
+
+// Drawer open/close
+const drawer = document.getElementById("drawer");
+const overlay = document.getElementById("drawerOverlay");
+const closeBtn = document.getElementById("drawerClose");
+const menuBtn = document.getElementById("menuBtn");
+
+function openDrawer(){
+  drawer.classList.add("open");
+  overlay.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeDrawer(){
+  drawer.classList.remove("open");
+  overlay.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+menuBtn.addEventListener("click", openDrawer);
+closeBtn.addEventListener("click", closeDrawer);
+overlay.addEventListener("click", closeDrawer);
+window.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closeDrawer(); });
+
+// Close drawer when clicking menu links
+document.querySelectorAll(".drawerLink").forEach(a=>{
+  a.addEventListener("click", ()=> setTimeout(closeDrawer, 120));
 });
 
-// default
-applyLang("en");
+// Currency pills (visual only)
+const pills = document.getElementById("currencyPills");
+pills.addEventListener("click", (e)=>{
+  const btn = e.target.closest("[data-cur]");
+  if(!btn) return;
+  pills.querySelectorAll(".pill").forEach(p=>p.classList.remove("active"));
+  btn.classList.add("active");
+  window.__currency = btn.getAttribute("data-cur");
+});
+window.__currency = "UAH";
 </script>
 
 </body>
