@@ -55,24 +55,25 @@ header{
   background:rgba(0,0,0,.42);
 }
 
-/* контейнер кнопки */
+/* контейнер кнопки — прям внизу */
 .hero-content{
   position:absolute;
-  bottom:24px;          /* кнопка в самом низу */
+  bottom:12px;           /* ещё ниже, почти край */
   left:50%;
   transform:translateX(-50%);
   z-index:2;
 }
 
-/* кнопка */
+/* сама кнопка — менее заметная */
 .hero-content a{
   display:inline-block;
-  background:rgba(255,255,255,.95);
+  background:rgba(255,255,255,.65);   /* было 0.95 → стало мягче */
   color:#000;
-  padding:14px 38px;
-  font-size:13px;
+  padding:12px 34px;
+  font-size:12px;
   letter-spacing:2px;
   text-decoration:none;
+  backdrop-filter: blur(2px);
 }
 
 /* === МОБИЛА: поднимаем банки, режем СВЕРХУ === */
